@@ -23,17 +23,22 @@ class Round
           puts "\n Yeah, obviously. \n\n"
           else
           puts "\n What the heck? No you dummy. \n\n"
-          @p1.lose_life
+          @current_player.lose_life
         end
 
         @round_number += 1
         puts "#{@p1.name}\'s health:" + (" ❤️" * @p1.lives) + "  #{@p2.name}\'s health:" + (" ❤️" * @p2.lives)
-        
+        @current_player = Turn.new(@current_player, @p1, @p2).change
+
         if @p1.lives <= 0 || @p2.lives <= 0
           @game_ongoing = false
         end
-        
       end 
+      if @p1.lives <=0
+        puts "#{@p2.name}, you are the math champion of planet math."
+      else
+        puts  "Congratulations #{@p1.name}, you are the math champion of planet math."
+      end
     end
 end
 
